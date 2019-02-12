@@ -16,4 +16,15 @@ class Wine < ActiveRecord::Base
     best_10_wines = wine_point_hash.sort_by { |key, value| value }.reverse.first(10).to_h
   end
 
+  def self.best_value
+    wine_point_hash = {}
+
+    Wine.all.each do |wine|
+      points = wine.reviews.sum("points")
+      average = points / (wine.reviews.count)
+
+    end
+  end
+
+
 end
